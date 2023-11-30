@@ -39,6 +39,7 @@
 		<th><td>No</td><td>Merk</td><td>Model</td><td>Plat No.</td><td>Harga/hari</td></</th>
 		@foreach($posts as $post)
 		<tr>
+		<td>No</td><td>Merk</td><td>Model</td><td>Plat No.</td><td>Harga/hari</td>
 		</tr>
 		@endforeach
 		</table>

@@ -36,9 +36,10 @@
         @yield('content')
 		<a class="btn btn-danger" href="{{ ('car/tambah_car') }}"> Tambah </a>
 		<table width=100%>
-		<th><td>No</td><td>Merk</td><td>Model</td><td>Plat No.</td><td>Harga/hari</td></</th>
+		<th><td>No</td><td>Plat Kendaraan</td><td>Merk</td><td>Model</td><td>TglPinjam</td><td>Tgl Kembali</td><td>Lama (Hari)</td><td>Harga</td></th>
 		@foreach($posts as $post)
 		<tr>
+		<td>No</td><td>Plat Kendaraan</td><td>Merk</td><td>Model</td><td>TglPinjam</td><td>Tgl Kembali</td><td>Lama (Hari)</td><td>Harga</td>
 		</tr>
 		@endforeach
 		</table>

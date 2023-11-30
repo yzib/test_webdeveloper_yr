@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\trx_loan;
 use Illuminate\Http\Request;
 
 class data_loan extends Controller

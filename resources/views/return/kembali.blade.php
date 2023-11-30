@@ -14,7 +14,11 @@
                 <td><input class="form-control" type="username" name="car_id" value="{{ old('car_id') }}" /></td>
 			</tr>
             <tr>
-                <td><label>Merk Kendaraan <span class="text-danger">*</span></label></td>
+                <td><label>Peminjam<span class="text-danger">*</span></label></td>
+                <td><input class="form-control" type="username" name="merk" value="{{ old('merk') }}" /></td>
+            </tr>
+           <tr>
+                <td><label>Peminjam<span class="text-danger">*</span></label></td>
                 <td><input class="form-control" type="username" name="merk" value="{{ old('merk') }}" /></td>
             </tr>
 			<tr>
