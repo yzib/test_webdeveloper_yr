@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -7,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 
 use App\Models\user_car;
 use App\Models\User;
-
+use DB;
 class clas_user extends Controller
 {
     /**
@@ -29,27 +30,33 @@ class clas_user extends Controller
     public function login()
     {
         $data['title'] = 'Login';
-        return view('user/login', $data);
+        return view('user/login2', $data);
     }
 
     public function login_action(Request $request)
     {
          $credential = $request->validate([
-            'sys_uname' => 'required',
-            'sys_pass' => 'required',
+            'username' => 'required',
+            'password' => 'required',
         ]);
-		$credentials = array('username'=>$credential['sys_uname'], 'password'=>$credential['sys_pass']);
-		echo $credentials['password'];
-		echo $credentials['username'];
-		//exit();
-        if (Auth::attempt($credentials)) {
-			$request->session()->regenerate();
-            return redirect()->route('login')->withSuccess('You have successfully logged in!');
-        }
+		$sql="SELECT * FROM obj_loaner WHERE username='" .$credential['username']."' AND password='". $credential['password']."' LIMIT 1";
+		// $sql;exit();
+		$logi = DB::select($sql);
+		if(empty($logi)){
+			//return redirect()->route('login') ->with('User tidak ditemukan','Coba kembali.');
+			return redirect()->route('login');
+		}else{
+			$previous_name = session_name("LOGIN SUC");
+			session_start();
+			foreach ($logi as $value){
+				$_SESSION['Username'] = $value->username;
+				$_SESSION['name']     = $value->name_loaner;
+				$_SESSION['uid']     = $value->id_num;
+				$_SESSION['time']     = time();
+			}
+			return redirect()->route('home');
+		}
 
-        return back()->withErrors([
-            'password' => 'Wrong username or password',
-        ]);
     }
      public function logout(Request $request)
     {
@@ -64,7 +71,7 @@ class clas_user extends Controller
     {
         //yrib
 		$indexing = user::all();
-		return view('user.index', compact('indexing'));
+		return view('app4', compact('indexing'));
     }
 
     /**
@@ -73,7 +80,7 @@ class clas_user extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function regiss(Request $request)
     {
         // yrib. test
 		$request->validate([
@@ -81,13 +88,26 @@ class clas_user extends Controller
 		  'addr' => 'required|max:255',
 		  'phone' => 'required|max:16',
 		  'id_num' => 'required|max:16',
-		  'sys_uname' => 'required|max:18|min:8',
-		  'sys_pass' => 'required|max:16|min:8',
+		  'Username' => 'required|max:18|min:8',
+		  'password' => 'required|max:16|min:8',
 		  'id_num' => 'required|max:16'
 		]);
-		user::create($request->all());
-		return redirect()->route('home') ->with('Berhasil','User Ditambahkan.');
+		$price = DB::table('obj_loaner')->max('user_id');
+			//$price = compact('price');
+			//echo $price[0]; exit();
+			$n_id= $price[0]+1;
+		DB::table('obj_loaner')->insert([
+		  'user_id' => $n_id,
+		  'name_loaner' => $request->name_loaner,
+		  'addr' => $request->addr,
+		  'phone' => $request->phone,
+		  'id_num' => $request->id_num,
+		  'username' => $request->Username,
+		  'password' => $request->password,
+			]);
+		return redirect()->back()->withErrors(['msg' => 'Berhasil, Kontrak Sewa Ditambahkan.']);
     }
+	
 	  public function create()
 	  {
 		return view('home');

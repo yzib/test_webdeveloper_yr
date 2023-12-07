@@ -1,51 +1,210 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('app4')
+@section('ContentForm')
 
-        <title>Car.Rent/Loan/Borrows</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
-        <!-- Styles -->
-        <style>
-            /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}a{background-color:transparent}[hidden]{display:none}html{font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5}*,:after,:before{box-sizing:border-box;border:0 solid #e2e8f0}a{color:inherit;text-decoration:inherit}svg,video{display:block;vertical-align:middle}video{max-width:100%;height:auto}.bg-white{--bg-opacity:1;background-color:#fff;background-color:rgba(255,255,255,var(--bg-opacity))}.bg-gray-100{--bg-opacity:1;background-color:#f7fafc;background-color:rgba(247,250,252,var(--bg-opacity))}.border-gray-200{--border-opacity:1;border-color:#edf2f7;border-color:rgba(237,242,247,var(--border-opacity))}.border-t{border-top-width:1px}.flex{display:flex}.grid{display:grid}.hidden{display:none}.items-center{align-items:center}.justify-center{justify-content:center}.font-semibold{font-weight:600}.h-5{height:1.25rem}.h-8{height:2rem}.h-16{height:4rem}.text-sm{font-size:.875rem}.text-lg{font-size:1.125rem}.leading-7{line-height:1.75rem}.mx-auto{margin-left:auto;margin-right:auto}.ml-1{margin-left:.25rem}.mt-2{margin-top:.5rem}.mr-2{margin-right:.5rem}.ml-2{margin-left:.5rem}.mt-4{margin-top:1rem}.ml-4{margin-left:1rem}.mt-8{margin-top:2rem}.ml-12{margin-left:3rem}.-mt-px{margin-top:-1px}.max-w-6xl{max-width:72rem}.min-h-screen{min-height:100vh}.overflow-hidden{overflow:hidden}.p-6{padding:1.5rem}.py-4{padding-top:1rem;padding-bottom:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.pt-8{padding-top:2rem}.fixed{position:fixed}.relative{position:relative}.top-0{top:0}.right-0{right:0}.shadow{box-shadow:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06)}.text-center{text-align:center}.text-gray-200{--text-opacity:1;color:#edf2f7;color:rgba(237,242,247,var(--text-opacity))}.text-gray-300{--text-opacity:1;color:#e2e8f0;color:rgba(226,232,240,var(--text-opacity))}.text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}.text-gray-500{--text-opacity:1;color:#a0aec0;color:rgba(160,174,192,var(--text-opacity))}.text-gray-600{--text-opacity:1;color:#718096;color:rgba(113,128,150,var(--text-opacity))}.text-gray-700{--text-opacity:1;color:#4a5568;color:rgba(74,85,104,var(--text-opacity))}.text-gray-900{--text-opacity:1;color:#1a202c;color:rgba(26,32,44,var(--text-opacity))}.underline{text-decoration:underline}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.w-5{width:1.25rem}.w-8{width:2rem}.w-auto{width:auto}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}@media (min-width:640px){.sm\:rounded-lg{border-radius:.5rem}.sm\:block{display:block}.sm\:items-center{align-items:center}.sm\:justify-start{justify-content:flex-start}.sm\:justify-between{justify-content:space-between}.sm\:h-20{height:5rem}.sm\:ml-0{margin-left:0}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:pt-0{padding-top:0}.sm\:text-left{text-align:left}.sm\:text-right{text-align:right}}@media (min-width:768px){.md\:border-t-0{border-top-width:0}.md\:border-l{border-left-width:1px}.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (min-width:1024px){.lg\:px-8{padding-left:2rem;padding-right:2rem}}@media (prefers-color-scheme:dark){.dark\:bg-gray-800{--bg-opacity:1;background-color:#2d3748;background-color:rgba(45,55,72,var(--bg-opacity))}.dark\:bg-gray-900{--bg-opacity:1;background-color:#1a202c;background-color:rgba(26,32,44,var(--bg-opacity))}.dark\:border-gray-700{--border-opacity:1;border-color:#4a5568;border-color:rgba(74,85,104,var(--border-opacity))}.dark\:text-white{--text-opacity:1;color:#fff;color:rgba(255,255,255,var(--text-opacity))}.dark\:text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}.dark\:text-gray-500{--tw-text-opacity:1;color:#6b7280;color:rgba(107,114,128,var(--tw-text-opacity))}}
-        </style>
-
-        <style>
-            body {
-                font-family: 'Nunito', sans-serif;
-            }
-        </style>
-    </head>
-    <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-            @if ($uname<>''))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    <a href="" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-                    <a href="{{ route('logout') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log out</a>
-                </div>
-            @endif
-
-            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-  <nav class="navbar navbar-expand-lg navbar-light bg-warning">
-    <div class="container-fluid" width=100%>
-        <h1>@yield('title', $title)</h1>
-        @yield('content')
-		<a class="btn btn-danger" href="{{ ('car/tambah_car') }}"> Tambah </a>
-		<table width=100%>
-		<th><td>No</td><td>Plat Kendaraan</td><td>Merk</td><td>Model</td><td>TglPinjam</td><td>Tgl Kembali</td><td>Lama (Hari)</td><td>Harga</td></th>
-		@foreach($posts as $post)
+	<fieldset>
+	<legend>@yield('title', $title)</legend>
+	<fieldset>
+        @if($errors->any())
+        @foreach($errors->all() as $err)
+        <div id="status_form" class="alert alert-primary" role="alert" style="display: block;"><p class="alert alert-info">{{ $err }}</p></div>
+        @endforeach
+        @endif
+	</fieldset>
+	<form action="loan/{{ ('tambah2') }}" method="post" style="display:inline;">
+	<fieldset>
+	<table cellspacing="3" border="0">
+	{{ csrf_field() }}
+		<tbody>
 		<tr>
-		<td>No</td><td>Plat Kendaraan</td><td>Merk</td><td>Model</td><td>TglPinjam</td><td>Tgl Kembali</td><td>Lama (Hari)</td><td>Harga</td>
+			<td style=" padding-right:5px;">Tgl. Mulai</td>
+			<td style="padding: 3px;" colspan=2><input type="Date" id="date_start" name="date_start" onchange="" value="{{ old('date_start')  }}" />
+			<input type="text" id="loaner_idx" name="loaner_idx" size="10" maxlength="10" style="display: none;" value="{{ old('car_id') }} " /></td>			
+			<td style="padding-left: 45px;">Tgl. Sampai </td>
+			<td style="padding: 3px;"><input type="Date" id="date_end" name="date_end" onchange="" value="{{ old('date_end')  }}" />
+			<input type="text" id="loan_id" name="loan_id" size="10" maxlength="10" style="display: none;" value="{{ old('car_id') }} " /></td>			
+		</tr>
+		<tr>
+			<td rowspan=3 valign=top>Kendaraan disewa
+			<input type="text" id="car_idx" name="car_idx" size="10" maxlength="10" style="display: none;" value="{{ old('car_id') }} " /></td>
+			<td style="padding-left: 45px;">No. Pol. </td> 
+			<td style="padding: 3px;"><input type="text" id="car_num" name="car_num" onfocus="cariCar('Pilih Kendaraan','Event');"	value="{{ old('model') }}" /></td>
+		</tr>
+		<tr>
+			<td style="padding-left: 45px;">Model</td> 
+			<td style="padding: 3px;"><input type="text" id="model" name="model" onchange="" value="{{ old('model') }}" disabled /></td>
+		</tr>
+		<tr>
+			<td style="padding-left: 45px;">Merk</td> 
+			<td style="padding: 3px;"><input type="text" id="merk" name="merk" onchange="" value="{{ old('model') }}" disabled /></td>
+		</tr>
+		<tr>
+			<td style="padding-right:5px;">Harga per hari</td> 
+			<td style="padding: 3px;"><input type="text" id="price_r_d" name="price_r_d" onchange="" value="{{ old('price_r_d') }}" /></td> 	
+		</tr>
+	</tbody></table>
+	</fieldset>	
+	<fieldset align="left" style="padding: 10px; text-align: right;">
+	@if(empty( old('car_id') ))
+		<button type="submit" class="btn btn-info">Tambah</button>
+	@else
+		<button type="submit" class="btn btn-info">Simpan</button>
+	@endif
+	</fieldset>
+	</form>
+	<fieldset>
+	<table width=100% cellspacing="2px">
+		<tr style="text-align: center; border-top: #442244 solid 2px; border-bottom: #442244 solid 1px;">
+			<th style="text-align: center;">No</th><th style="text-align: center;">Kendaraan </br>(Merk/Model/No. Pol.)</th>
+			<th style="text-align: center;">TglPinjam</th><th style="text-align: center;">Tgl Kembali</th><th style="text-align: center;">Lama (Hari)</th>
+			<th style="text-align: center;">Harga</th><th> Aksi</th></tr>
+		@foreach($posts as $key => $data)
+		@if($data->date_return == ''){
+		<tr style="border-bottom: #888888 solid 1px; background: #ffffff;">
+		}
+		@else{
+		<tr style="border-bottom: #888888 solid 1px; background: #aaaaaa;">
+		}
+		@endif
+		<td style="text-align: center;">{{ $key+1 }}</td><td style="text-align: center;">{{ $data->merk }}</br>{{ $data->model }}</br>{{ $data->car_num }}</td>
+		<td style="text-align: center;">{{ $data->date_start }}</td><td style="text-align: center;">{{ $data->date_end }}</br>{{ $data->date_return }}</td>
+		<td style="text-align: center;">{{ dateDiff($data->date_start, $data->date_end) }}</td>
+		<td style="text-align: center;">{{ $data->price_r_d }} </br>{{ (dateDiff($data->date_start, $data->date_end)*$data->price_r_d) }}</td>
+		<td style="padding: 2px;">
+			<form action="/loan/put/{{ $data->car_id }}" method="GET" style="display:inline;">
+			<input type="text" id="loan_idEdit{{ $data->car_id }}" size="10" maxlength="10" style="display: none;" value="{{ $data->car_id }}" />
+			<button type="submit" class="btn btn-info btn-sm">View</button></form>
+			<!--form action="car/destroy/{{ $data->car_id }}" method="get"style="display:inline;">
+			<input type="text" id="car_idDelete" size="10" maxlength="10" style="display: none;" value="{{ $data->car_id }}" />
+			<button type="submit" class="btn btn-danger btn-sm">Delete</button></form-->
+		</td>
+		
 		</tr>
 		@endforeach
-		</table>
-    </div>
-  </nav>
-            </div>
-        </div>
-    </body>
-</html>
+		<tr style="text-align: center; border-top: #442244 solid 1px; border-bottom: #442244 solid 1px;"><td></td></tr>
+	</table>
+	</fieldset>
+	</fieldset>
+	
+<script>
+function clickCar(id)
+{
+	const input1 = document.getElementById('car_num');
+	const input2 = document.getElementById('model');
+	const input3 = document.getElementById('merk');
+	const input4 = document.getElementById('car_idx');
+	const input5 = document.getElementById('price_r_d');
+	$.ajax({
+		type: "POST",
+		url: "/loan/getCarById?id=" + id,
+		data: {
+			"_token": "{{ csrf_token() }}",
+			"id": id,
+			},
+
+		success: function(ret_data) {
+			console.log(ret_data);
+			const id_numbers = JSON.stringify(ret_data);
+			const id_number = JSON.parse(id_numbers);
+			console.log(typeof id_number );
+			console.log(id_number );
+			input1.value = id_number.car_num;
+			input2.value = id_number.model;
+			input3.value = id_number.merk;
+			input4.value = id_number.car_id;
+			input5.value = id_number.price_r_d;
+		},
+		error: function(req, textStatus, errorThrown) {
+			alert('Ooops, something happened: ' + textStatus + ' ' +errorThrown);
+		}
+	});
+
+		closeDialog();
+}
+
+
+function cariCar(title,ev){
+	kosongkan();
+	setSloc('simpan');
+	content= "<div>";
+	content+="<fieldset>"+
+		"<table><tr><td>Find Merk</td><td>:"+
+		"<input type=text id=textpo class=myinputtext onkeypress=\"return tanpa_kutip(event);\" maxlength=25 style='width:150px'>"+
+		"</td></tr>"+
+		"<tr><td>Find Model</td><td>:<input type=text class=myinputtext onkeypress='return tanpa_kutip(event)' style='width:150px' id=selSupp />"+
+		"<button class=mybutton onclick=goCariCar()>Cari</button></td></tr><tr><td></td></tr></table></fieldset>";
+	content+="<div id=containercari style=\"height:250px;width:470px;overflow:scroll;\"></div></div>";
+    
+	//display window
+	title=title;
+	width='500';
+	height='350';
+	showDialog1(title,content,width,height,ev);	
+}
+
+function kosongkan()
+{
+	const input1 = document.getElementById('car_num');
+	const input2 = document.getElementById('model');
+	const input3 = document.getElementById('merk');
+	
+	input1.value='';
+	input2.value='';
+	input3.value='';
+	//document.getElementById('car_num').value=' ';
+	//document.getElementById('model').value=' ';
+	//document.getElementById('merk').value=' ';
+	//enableHeader();	
+}
+
+function myFunction(x) {
+  x.style.background = "yellow";
+}
+
+function setSloc(x){
+        //gudang = document.getElementById('sloc').options[document.getElementById('sloc').selectedIndex].value;
+        gudang = "Normal";
+//set value display periode
+        tglstart=document.getElementById('date_start').value;
+        tglend=document.getElementById('date_end').value;
+        //tglstart=tglstart.substr(6,2)+"-"+tglstart.substr(4,2)+"-"+tglstart.substr(0,4);
+        //tglend=tglend.substr(6,2)+"-"+tglend.substr(4,2)+"-"+tglend.substr(0,4);
+        tglstart=tglstart+"V"+tglend;
+		if(tglstart == 'V') {tglstart='2023-12-12V2023-12-12';document.getElementById('date_start').value='2023-12-12';document.getElementById('date_end').value='2023-12-12';}
+        if (gudang != '') {
+                if (x == 'simpan') {
+                        //document.getElementById('sloc').disabled = true;
+                        //document.getElementById('btnsloc').disabled = true;
+                        //tujuan = 'log_slave_getBapbNumber.php';
+                        tujuan = '/loan/getCar/'+ tglstart;
+                        param = 'tglstart=' + tglstart;
+                        post_response_text(tujuan, param, respog);
+                }
+                else {
+                        document.getElementById('sloc').disabled = false;
+                        document.getElementById('sloc').options[0].selected=true;
+                        document.getElementById('btnsloc').disabled = false;
+                        kosongkan();
+                }	
+
+        }	
+                function respog(){
+                        if (con.readyState == 4) {
+                                if (con.status == 200) {
+                                        busy_off();
+                                        if (!isSaveResponse(con.responseText)) {
+                                                alert('ERROR TRANSACTION,\n' + con.responseText);
+                                        }
+                                        else {
+                                                //alert(con.responseText);
+												document.getElementById('containercari').innerHTML=con.responseText;
+                                        }
+                                }
+                                else {
+                                        busy_off();
+                                        error_catch(con.status);
+                                }
+                        }
+                }
+}
+</script>	
+@endsection
